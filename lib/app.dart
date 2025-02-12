@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_media_clone/features/auth/data/firebase_auth_repo.dart';
+import 'package:social_media_clone/config/firebase_auth_repo.dart';
 import 'package:social_media_clone/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:social_media_clone/features/auth/presentation/cubits/auth_states.dart';
 import 'package:social_media_clone/features/auth/presentation/pages/auth_page.dart';
