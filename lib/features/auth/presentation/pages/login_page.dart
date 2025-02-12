@@ -14,9 +14,13 @@ If user doesn't have an account yet, they can go to register page from here to c
 
 */
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_media_clone/features/auth/presentation/components/my_button.dart';
 import 'package:social_media_clone/features/auth/presentation/components/my_text_field.dart';
+import 'package:social_media_clone/features/auth/presentation/cubits/auth_cubit.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? togglePages;
@@ -32,6 +36,29 @@ class _LoginPageState extends State<LoginPage> {
   // text controllers
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  void login() {
+    //prepare email and password
+    final String email = emailController.text;
+    final String password = passwordController.text;
+
+    // auth cubit
+    final authCubit = context.read<AuthCubit>();
+
+    // ensure that the email and password fields are not empty
+    if(email.isNotEmpty && password.isNotEmpty) {
+      authCubit.login(email, password);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Please enter both email and password.")));
+    }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   // BUILD UI
   @override
@@ -88,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
           
                 // login button
                 MyButton(
-                  onTap: () {}, 
+                  onTap: login, 
                   text: "Login"
                 ),
 
