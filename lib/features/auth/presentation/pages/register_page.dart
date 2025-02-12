@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_media_clone/features/auth/presentation/components/my_button.dart';
 import 'package:social_media_clone/features/auth/presentation/components/my_text_field.dart';
+import 'package:social_media_clone/features/auth/presentation/cubits/auth_cubit.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? togglePages;
@@ -17,6 +19,44 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+
+  // register button pressed
+  void register() {
+    // prepare info
+    final String name = nameController.text;
+    final String email = emailController.text;
+    final String password = passwordController.text;
+    final String confirmPassword = confirmPasswordController.text;
+
+    // auth cubit
+    final authCubit = context.read<AuthCubit>();
+
+    // ensure the fields aren't empty
+    if(name.isNotEmpty && email.isNotEmpty && password.isNotEmpty && confirmPassword.isNotEmpty) {
+      // ensure password match
+      if(password == confirmPassword) {
+        authCubit.register(name, email, password);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Passwords did not match"))
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please complete all fields."))
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   // BUILD UI
   @override
@@ -91,7 +131,7 @@ class _RegisterPageState extends State<RegisterPage> {
           
                 // register button
                 MyButton(
-                  onTap: () {}, 
+                  onTap: register, 
                   text: "Register"
                 ),
 
