@@ -14,7 +14,6 @@ If user doesn't have an account yet, they can go to register page from here to c
 
 */
 
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
