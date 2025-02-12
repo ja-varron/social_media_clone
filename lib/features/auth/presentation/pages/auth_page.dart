@@ -26,6 +26,7 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    return showLoginPage ? LoginPage() : RegisterPage();
+    return showLoginPage ? LoginPage(togglePages: togglePages,) : 
+    RegisterPage(togglePages: togglePages,);
   }
 }
