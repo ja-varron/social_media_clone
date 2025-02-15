@@ -4,8 +4,9 @@ import 'package:social_media_clone/config/firebase_auth_repo.dart';
 import 'package:social_media_clone/features/auth/presentation/cubits/auth_cubit.dart';
 import 'package:social_media_clone/features/auth/presentation/cubits/auth_states.dart';
 import 'package:social_media_clone/features/auth/presentation/pages/auth_page.dart';
-import 'package:social_media_clone/features/post/presentation/pages/home_page.dart';
 import 'package:social_media_clone/themes/light_mode.dart';
+
+import 'features/home/presentation/pages/home_page.dart';
 
 /*
 
