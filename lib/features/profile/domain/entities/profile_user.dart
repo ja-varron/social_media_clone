@@ -13,7 +13,7 @@ class ProfileUser extends AppUser {
   });
 
   // method to update profile user
-  ProfileUser copyWith(String? newBio, String? newProfileImageUrl) {
+  ProfileUser copyWith({String? newBio, String? newProfileImageUrl}) {
     return ProfileUser(
       uid: uid, 
       email: email, 
@@ -24,6 +24,7 @@ class ProfileUser extends AppUser {
   }
 
   //convert profile user ->json
+  @override
   Map<String, dynamic> toJson() {
     return {
       'uid' : uid,
