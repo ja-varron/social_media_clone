@@ -12,12 +12,19 @@ class FirebaseAuthRepo implements AuthRepo {
   Future<AppUser?> loginWithEmailPassword(String email, String password) async {
     try {
       //attempt sign in
-      UserCredential userCredential = await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = 
+          await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
 
+      // fetch user document from firestore
+      DocumentSnapshot userDoc = 
+          await firebaseFirestore.collection('users').doc(userCredential.user!.uid).get();
+
+      // create user
       AppUser user = AppUser(
         uid: userCredential.user!.uid, 
         email: email, 
-        name: '');
+        name: userDoc['name']
+      );
 
         //return user
         return user;
