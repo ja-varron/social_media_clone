@@ -74,11 +74,14 @@ class FirebaseAuthRepo implements AuthRepo {
       return null;
     }
 
+    // fetch user document from firestore
+    DocumentSnapshot userDoc = await firebaseFirestore.collection("users").doc(firebaseUser.uid).get();
+
     //user exists
     return AppUser(
       uid: firebaseUser.uid,
       email: firebaseUser.email!, 
-      name: ''
+      name: userDoc['name']
     );
   }
 }
