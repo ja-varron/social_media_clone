@@ -79,7 +79,8 @@ class _UploadPostPageState extends State<UploadPostPage> {
       userName: currentUser!.name, 
       text: textController.text, 
       imageUrl: '', 
-      timestamp: DateTime.now()
+      timestamp: DateTime.now(),
+      likes: []
     ); 
 
     // post cubit

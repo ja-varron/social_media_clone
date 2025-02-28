@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_media_clone/features/profile/domain/entities/profile_user.dart';
 import 'package:social_media_clone/features/profile/domain/repos/profile_repo.dart';
 import 'package:social_media_clone/features/profile/presentation/cubits/profile_states.dart';
 import 'package:social_media_clone/features/storage/domain/storage_repo.dart';
@@ -14,7 +15,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     required this.storageRepo
   }) : super(ProfileInitial());
 
-  // fetch user profile using repo
+  // fetch user profile using repo -> useful for loading profile pages
   Future<void> fetchUserProfile(String uid) async {
     try {
       emit(ProfileLoading());
@@ -29,6 +30,12 @@ class ProfileCubit extends Cubit<ProfileState> {
     } catch(e) {
       emit(ProfileError(e.toString()));
     } 
+  }
+
+  // return user profile given uid -> useful for loading many profiles for post
+  Future<ProfileUser?> getUserProfile(String uid) async {
+    final user = await profileRepo.fetchUserProfile(uid);
+    return user;
   }
 
 
