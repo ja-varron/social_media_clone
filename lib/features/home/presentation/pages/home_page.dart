@@ -5,6 +5,7 @@ import 'package:social_media_clone/features/post/presentation/components/post_ti
 import 'package:social_media_clone/features/post/presentation/cubits/post_cubit.dart';
 import 'package:social_media_clone/features/post/presentation/cubits/post_states.dart';
 import 'package:social_media_clone/features/post/presentation/pages/upload_post_page.dart';
+import 'package:social_media_clone/responsive/constrained_scaffold.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,12 +39,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ConstrainedScaffold(
 
       // APPBAR
       appBar: AppBar(
         title: const Text("Home"),
-        foregroundColor: Theme.of(context).colorScheme.secondary,
+        foregroundColor: Theme.of(context).colorScheme.primary,
         centerTitle: true,
         actions: [
           // upload new post button

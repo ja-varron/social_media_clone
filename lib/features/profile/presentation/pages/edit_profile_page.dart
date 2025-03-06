@@ -9,6 +9,7 @@ import 'package:social_media_clone/features/auth/presentation/components/my_text
 import 'package:social_media_clone/features/profile/domain/entities/profile_user.dart';
 import 'package:social_media_clone/features/profile/presentation/cubits/profile_cubit.dart';
 import 'package:social_media_clone/features/profile/presentation/cubits/profile_states.dart';
+import 'package:social_media_clone/responsive/constrained_scaffold.dart';
 
 class EditProfilePage extends StatefulWidget {
   final ProfileUser user;
@@ -109,11 +110,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
   
   Widget buildEditPage() {
-    return Scaffold(
+    return ConstrainedScaffold(
       appBar: AppBar(
         title: const Text("Edit Profile"),
         centerTitle: true,
-        foregroundColor: Theme.of(context).colorScheme.secondary, 
+        foregroundColor: Theme.of(context).colorScheme.primary, 
         actions: [
           // save button
           IconButton(

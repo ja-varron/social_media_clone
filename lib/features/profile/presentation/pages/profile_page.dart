@@ -13,6 +13,7 @@ import 'package:social_media_clone/features/profile/presentation/cubits/profile_
 import 'package:social_media_clone/features/profile/presentation/cubits/profile_states.dart';
 import 'package:social_media_clone/features/profile/presentation/pages/edit_profile_page.dart';
 import 'package:social_media_clone/features/profile/presentation/pages/follower_page.dart';
+import 'package:social_media_clone/responsive/constrained_scaffold.dart';
 
 class ProfilePage extends StatefulWidget {
   final String uid;
@@ -101,11 +102,11 @@ class _ProfilePageState extends State<ProfilePage> {
           // get loaded user
           final user = state.profileUser;
 
-          return Scaffold(
+          return ConstrainedScaffold(
             appBar: AppBar(
               title: Text(user.name),
               centerTitle: true,
-              foregroundColor: Theme.of(context).colorScheme.secondary,
+              foregroundColor: Theme.of(context).colorScheme.primary,
               actions: [
                 // edit profile button
                 if(isOwnPost)
