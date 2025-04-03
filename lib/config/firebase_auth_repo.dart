@@ -12,12 +12,19 @@ class FirebaseAuthRepo implements AuthRepo {
   Future<AppUser?> loginWithEmailPassword(String email, String password) async {
     try {
       //attempt sign in
-      UserCredential userCredential = await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = 
+          await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
 
+      // fetch user document from firestore
+      DocumentSnapshot userDoc = 
+          await firebaseFirestore.collection('users').doc(userCredential.user!.uid).get();
+
+      // create user
       AppUser user = AppUser(
         uid: userCredential.user!.uid, 
         email: email, 
-        name: '');
+        name: userDoc['name']
+      );
 
         //return user
         return user;
@@ -49,7 +56,7 @@ class FirebaseAuthRepo implements AuthRepo {
     } 
     //catch any errors
     catch(e) {
-      throw Exception('Login failed: $e');
+      throw Exception('Register failed: $e');
     }
   }
 
@@ -67,11 +74,14 @@ class FirebaseAuthRepo implements AuthRepo {
       return null;
     }
 
+    // fetch user document from firestore
+    DocumentSnapshot userDoc = await firebaseFirestore.collection("users").doc(firebaseUser.uid).get();
+
     //user exists
     return AppUser(
       uid: firebaseUser.uid,
       email: firebaseUser.email!, 
-      name: ''
+      name: userDoc['name']
     );
   }
 }
