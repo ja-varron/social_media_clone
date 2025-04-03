@@ -1,4 +1,4 @@
-import '../../../auth/domain/entities/app_user.dart';
+import 'package:social_media_clone/features/auth/domain/entities/app_user.dart';
 
 class ProfileUser extends AppUser {
   final String bio;
