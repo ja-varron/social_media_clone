@@ -56,7 +56,7 @@ class FirebaseAuthRepo implements AuthRepo {
     } 
     //catch any errors
     catch(e) {
-      throw Exception('Login failed: $e');
+      throw Exception('Register failed: $e');
     }
   }
 
