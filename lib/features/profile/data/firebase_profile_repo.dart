@@ -93,7 +93,7 @@ class FirebaseProfileRepo implements ProfileRepo {
         }
       }
     } catch(e) {
-
+      throw Exception(e);
     }
   }
 

@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () => Navigator.push(
               context, 
               MaterialPageRoute(
-                builder: (context) => UploadPostPage(),
+                builder: (context) => const UploadPostPage(),
               )
             ), 
             icon: const Icon(Icons.add)
