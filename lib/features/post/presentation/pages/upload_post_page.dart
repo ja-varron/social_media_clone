@@ -107,7 +107,6 @@ class _UploadPostPageState extends State<UploadPostPage> {
     // BLOC CONSUMER -> builder + listener
     return BlocConsumer<PostCubit, PostState>(
       builder: (context, state) {
-        print(state);
         // loading or uploading
         if(state is PostsLoading || state is PostsUploading) {
           return const Scaffold(
